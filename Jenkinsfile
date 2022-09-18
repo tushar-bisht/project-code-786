@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Git Checkout') {
       steps {
-        checkout node-app
+        checkout task-3
       }
     }
 
