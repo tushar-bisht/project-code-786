@@ -1,9 +1,13 @@
 pipeline {
   agent any
   stages {
-
     stage("Deploy node app") {
       withCredentials([sshUserPrivateKey(credentialsId: 'node-app', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
+        def remote = [:]
+        remote.name = "ubuntu"
+        remote.host = "192.168.2.213"
+        remote.allowAnyHosts = true
+
         remote.user = ubuntu
         remote.identityFile = identity
         sshCommand remote: remote, command: 'docker stop nodeapp; docker pull 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER}'
