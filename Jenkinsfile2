@@ -21,12 +21,12 @@ pipeline {
           sh 'echo "Today is:" date'
           echo '*** Executing remote commands ***'
           sh '''#!/bin/bash
-          date
-          ssh -T -t ubuntu@192.168.2.213 << ENDSSH
-          java -version
-          date
-          cd /tmp
-          pwd
+            date
+            ssh -T -t ubuntu@192.168.2.213 << ENDSSH
+            java -version
+            date
+            cd /tmp
+            pwd
 ENDSSH
 '''
 
