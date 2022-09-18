@@ -8,9 +8,10 @@ pipeline {
     }
 
     stage('Build Docker Image') {
+      agent { docker 'node:alpine' } 
       steps {
-        sh 'docker build . -t 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER}'
-        sh 'docker push 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER}'
+        sh 'docker build . -t 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER} -u root'
+        sh 'docker push 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER} -u root'
           }
         }
 }
