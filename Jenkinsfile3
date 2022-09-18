@@ -5,6 +5,7 @@ pipeline {
       steps{
         withCredentials([sshUserPrivateKey(credentialsId: 'node-app', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
           sh  'ls -alh'
+          sshCommand remote: remote, command: 'ls -alh'
 
 }
 }
