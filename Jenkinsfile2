@@ -22,7 +22,7 @@ pipeline {
           echo '*** Executing remote commands ***'
           sh '''#!/bin/bash
           date
-          ssh ubuntu@192.168.2.213 << ENDSSH
+          ssh -T -t ubuntu@192.168.2.213 << ENDSSH
           java -version
           date
           cd /tmp
