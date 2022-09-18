@@ -18,8 +18,8 @@ pipeline {
       steps{
         withCredentials([sshUserPrivateKey(credentialsId: 'node-app', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
           sh  'ls -alh'
-          sh 'ssh ubuntu@192.168.2.213 -oStrictHostKeyChecking=no docker stop nodeapp && docker pull 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER}'
-          sh 'ssh ubuntu@192.168.2.213 -oStrictHostKeyChecking=no docker run -itd -p8080:8080 --name nodeapp 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${{BUILD_NUMBER}-1}'
+          sh 'ssh ubuntu@192.168.2.213 -oStrictHostKeyChecking=no docker stop nodeapp && docker rm $(docker ps -a --filter name=nodeapp -q) && docker pull 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER}'
+          sh 'ssh ubuntu@192.168.2.213 -oStrictHostKeyChecking=no docker run -itd -p8080:8080 --name nodeapp 776487083560.dkr.ecr.us-east-1.amazonaws.com/project-code-786:${BUILD_NUMBER}'
 }
 }
 }
