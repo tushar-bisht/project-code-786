@@ -4,7 +4,7 @@ pipeline {
     stage("Deploy node app") {
       steps{
         withCredentials([sshUserPrivateKey(credentialsId: 'node-app', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
-          sh "ssh -i ${remote.identity_file} ${remote_user}@${remote.host} 'ls -alh'"
+          sh  'ls -alh'
 
 }
 }
